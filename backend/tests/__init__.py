@@ -1,0 +1,3 @@
+"""
+CampusRide Planner - Test Suite
+"""
