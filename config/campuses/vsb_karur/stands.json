@@ -1,0 +1,62 @@
+[
+  {
+    "id": "VSB-01",
+    "name": "Main Entrance & Bus Arch",
+    "zone": "Entry",
+    "latitude": 10.9568,
+    "longitude": 77.9545,
+    "dock_capacity": 16,
+    "origin_weight": 0.30,
+    "destination_weight": 0.05
+  },
+  {
+    "id": "VSB-02",
+    "name": "Admin & CSE/IT Block",
+    "zone": "Academic",
+    "latitude": 10.9552,
+    "longitude": 77.9548,
+    "dock_capacity": 15,
+    "origin_weight": 0.05,
+    "destination_weight": 0.25
+  },
+  {
+    "id": "VSB-03",
+    "name": "Mechanical & EEE Block",
+    "zone": "Academic",
+    "latitude": 10.9544,
+    "longitude": 77.9556,
+    "dock_capacity": 14,
+    "origin_weight": 0.05,
+    "destination_weight": 0.20
+  },
+  {
+    "id": "VSB-04",
+    "name": "Central Library & Audi",
+    "zone": "Hub",
+    "latitude": 10.9549,
+    "longitude": 77.9538,
+    "dock_capacity": 12,
+    "origin_weight": 0.10,
+    "destination_weight": 0.20
+  },
+  {
+    "id": "VSB-05",
+    "name": "Cafeteria & Food Court",
+    "zone": "Hub",
+    "latitude": 10.9538,
+    "longitude": 77.9549,
+    "dock_capacity": 10,
+    "origin_weight": 0.15,
+    "destination_weight": 0.15
+  },
+  {
+    "id": "VSB-06",
+    "name": "Hostel Complex & Depo",
+    "zone": "Residential",
+    "latitude": 10.9530,
+    "longitude": 77.9540,
+    "dock_capacity": 16,
+    "origin_weight": 0.35,
+    "destination_weight": 0.15
+  }
+]

@@ -1,0 +1,55 @@
+campus:
+  id: "vsb_karur"
+  name: "V.S.B. Engineering College"
+  city: "Karur, Tamil Nadu"
+  bbox:
+    north: 10.9590
+    south: 10.9510
+    west: 77.9500
+    east: 77.9590
+  graph_cache_path: "config/campuses/vsb_karur/campus_graph.graphml"
+  travel_matrix_cache_path: "config/campuses/vsb_karur/travel_matrices.json"
+
+fleet:
+  total_bikes: 50
+  stands_config_path: "config/campuses/vsb_karur/stands.json"
+
+simulation:
+  operating_hours:
+    start_hour: 8
+    end_hour: 18
+  bike_speed_kmh: 12.0
+  walk_speed_kmh: 4.8
+  max_wait_minutes: 4.0
+  bell_window_minutes: 10
+  trip_duration_model: "lognormal"
+  trip_duration_variance: 0.15
+
+allocation:
+  weights:
+    stockout_penalty: 1.0
+    overflow_penalty: 0.7
+  target_hour: 8
+
+rebalancing:
+  van_capacity: 12
+  time_per_bike_sec: 90
+  max_shift_minutes: 60
+  window_start_hour: 12.0
+  window_end_hour: 13.0
+  num_vans: 1
+  depot_stand_id: "VSB-06"
+
+weather:
+  api_url: "https://api.open-meteo.com/v1/forecast"
+  latitude: 10.95485
+  longitude: 77.95463
+  cache_db_path: "data/weather_cache_vsb.db"
+  cache_ttl_hours: 24
+  rain_penalty_factor: 0.60
+
+evaluation:
+  replications: 30
+  confidence_interval_level: 0.95
+  random_seeds: [42, 101, 202, 303, 404, 505, 606, 707, 808, 909, 1010, 1111, 1212, 1313, 1414, 1515, 1616, 1717, 1818, 1919, 2020, 2121, 2222, 2323, 2424, 2525, 2626, 2727, 2828, 2929]
+

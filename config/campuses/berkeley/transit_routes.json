@@ -1,0 +1,65 @@
+[
+  {
+    "id": "UCB-SHUTTLE-P",
+    "name": "Bear Transit P-Line",
+    "type": "shuttle",
+    "vehicle_type": "Campus Shuttle Bus (30 seats)",
+    "color": "#3b82f6",
+    "operating_hours": "07:30–19:30",
+    "headway_minutes": 15,
+    "speed_kmh": 20.0,
+    "cost": 0.0,
+    "currency": "$",
+    "stops": [
+      {
+        "stand_id": "ST-01",
+        "name": "BART Downtown Plaza",
+        "latitude": 37.8703,
+        "longitude": -122.2681,
+        "stop_order": 1
+      },
+      {
+        "stand_id": "ST-03",
+        "name": "North Gate Hall",
+        "latitude": 37.8752,
+        "longitude": -122.2598,
+        "stop_order": 2
+      },
+      {
+        "stand_id": "ST-05",
+        "name": "Cory / Hearst Mining",
+        "latitude": 37.8748,
+        "longitude": -122.2570,
+        "stop_order": 3
+      },
+      {
+        "stand_id": "ST-06",
+        "name": "Haas School of Business",
+        "latitude": 37.8715,
+        "longitude": -122.2535,
+        "stop_order": 4
+      },
+      {
+        "stand_id": "ST-07",
+        "name": "Unit 1 / Underhill Field",
+        "latitude": 37.8680,
+        "longitude": -122.2555,
+        "stop_order": 5
+      },
+      {
+        "stand_id": "ST-02",
+        "name": "MLK Student Union",
+        "latitude": 37.8695,
+        "longitude": -122.2600,
+        "stop_order": 6
+      },
+      {
+        "stand_id": "ST-01",
+        "name": "BART Downtown Plaza",
+        "latitude": 37.8703,
+        "longitude": -122.2681,
+        "stop_order": 7
+      }
+    ]
+  }
+]

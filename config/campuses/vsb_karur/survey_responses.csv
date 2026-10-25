@@ -1,0 +1,251 @@
+id,home_stand,dest_stand,morning_commute_hour,evening_commute_hour,cycle_in_rain,acceptable_walk_minutes
+student_1000@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,16,no,3.0
+student_1001@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,no,5.0
+student_1002@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,17,yes,3.0
+student_1003@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,yes,5.0
+student_1004@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,17,no,8.0
+student_1005@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,9,16,no,8.0
+student_1006@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,no,5.0
+student_1007@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,9,16,no,8.0
+student_1008@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,17,no,5.0
+student_1009@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,16,no,5.0
+student_1010@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,9,17,no,3.0
+student_1011@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,yes,8.0
+student_1012@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,yes,5.0
+student_1013@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,17,no,5.0
+student_1014@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,18,no,3.0
+student_1015@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,16,no,5.0
+student_1016@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,5.0
+student_1017@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,16,no,5.0
+student_1018@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,yes,8.0
+student_1019@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,no,8.0
+student_1020@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,16,yes,10.0
+student_1021@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,no,10.0
+student_1022@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,17,yes,3.0
+student_1023@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,9,16,no,5.0
+student_1024@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,17,yes,10.0
+student_1025@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,17,no,8.0
+student_1026@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,no,5.0
+student_1027@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,17,no,10.0
+student_1028@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,no,5.0
+student_1029@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,9,17,no,3.0
+student_1030@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,16,yes,5.0
+student_1031@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,16,yes,3.0
+student_1032@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,no,8.0
+student_1033@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,9,17,no,5.0
+student_1034@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,9,17,no,5.0
+student_1035@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,9,16,no,5.0
+student_1036@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,18,yes,5.0
+student_1037@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,no,5.0
+student_1038@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,17,no,8.0
+student_1039@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,9,16,no,5.0
+student_1040@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,17,no,5.0
+student_1041@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,17,no,5.0
+student_1042@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,no,5.0
+student_1043@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,18,yes,3.0
+student_1044@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,no,3.0
+student_1045@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,no,10.0
+student_1046@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,9,16,yes,5.0
+student_1047@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,17,no,3.0
+student_1048@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,18,no,5.0
+student_1049@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,17,no,5.0
+student_1050@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,yes,5.0
+student_1051@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,9,17,no,3.0
+student_1052@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,9,17,yes,8.0
+student_1053@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,16,no,8.0
+student_1054@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,9,18,yes,8.0
+student_1055@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,16,yes,8.0
+student_1056@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,17,no,3.0
+student_1057@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,18,no,8.0
+student_1058@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,16,no,8.0
+student_1059@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,16,yes,5.0
+student_1060@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,9,16,no,10.0
+student_1061@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,16,yes,5.0
+student_1062@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,9,16,no,5.0
+student_1063@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,18,yes,5.0
+student_1064@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,17,no,5.0
+student_1065@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,18,no,10.0
+student_1066@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,5.0
+student_1067@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,17,no,8.0
+student_1068@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,17,no,3.0
+student_1069@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,no,3.0
+student_1070@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,17,no,5.0
+student_1071@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,8.0
+student_1072@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,17,no,5.0
+student_1073@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,17,no,10.0
+student_1074@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,17,no,8.0
+student_1075@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,no,3.0
+student_1076@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,5.0
+student_1077@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,16,no,3.0
+student_1078@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,16,no,5.0
+student_1079@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,17,yes,3.0
+student_1080@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,yes,8.0
+student_1081@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,no,5.0
+student_1082@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,9,18,yes,5.0
+student_1083@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,yes,3.0
+student_1084@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,8.0
+student_1085@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,5.0
+student_1086@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,17,no,8.0
+student_1087@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,9,17,no,5.0
+student_1088@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,16,no,5.0
+student_1089@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,9,16,no,5.0
+student_1090@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,9,16,no,8.0
+student_1091@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,16,no,8.0
+student_1092@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,17,no,5.0
+student_1093@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,9,16,yes,5.0
+student_1094@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,17,yes,5.0
+student_1095@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,17,no,8.0
+student_1096@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,9,16,no,5.0
+student_1097@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,17,no,3.0
+student_1098@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,17,yes,5.0
+student_1099@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,16,no,3.0
+student_1100@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,5.0
+student_1101@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,no,5.0
+student_1102@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,16,no,3.0
+student_1103@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,yes,3.0
+student_1104@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,17,yes,5.0
+student_1105@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,16,no,5.0
+student_1106@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,no,10.0
+student_1107@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,9,17,no,5.0
+student_1108@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,17,no,3.0
+student_1109@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,17,no,8.0
+student_1110@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,9,16,yes,5.0
+student_1111@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,yes,10.0
+student_1112@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,17,yes,3.0
+student_1113@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,no,3.0
+student_1114@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,17,no,3.0
+student_1115@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,8.0
+student_1116@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,no,5.0
+student_1117@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,17,no,8.0
+student_1118@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,17,no,10.0
+student_1119@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,5.0
+student_1120@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,18,yes,5.0
+student_1121@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,17,no,5.0
+student_1122@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,17,no,5.0
+student_1123@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,no,8.0
+student_1124@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,yes,8.0
+student_1125@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,no,8.0
+student_1126@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,no,8.0
+student_1127@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,yes,5.0
+student_1128@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,17,yes,5.0
+student_1129@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,yes,10.0
+student_1130@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,yes,5.0
+student_1131@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,9,18,no,5.0
+student_1132@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,9,16,yes,8.0
+student_1133@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,17,no,3.0
+student_1134@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,9,16,no,5.0
+student_1135@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,9,17,yes,3.0
+student_1136@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,9,16,no,5.0
+student_1137@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,9,17,no,3.0
+student_1138@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,17,yes,8.0
+student_1139@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,yes,5.0
+student_1140@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,18,no,5.0
+student_1141@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,9,17,no,5.0
+student_1142@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,no,5.0
+student_1143@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,16,no,8.0
+student_1144@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,18,no,8.0
+student_1145@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,16,no,5.0
+student_1146@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,17,no,5.0
+student_1147@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,17,no,5.0
+student_1148@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,16,no,5.0
+student_1149@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,10.0
+student_1150@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,17,no,10.0
+student_1151@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,9,17,no,5.0
+student_1152@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,9,18,yes,3.0
+student_1153@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,17,no,5.0
+student_1154@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,9,17,no,5.0
+student_1155@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,yes,3.0
+student_1156@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,18,yes,5.0
+student_1157@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,16,no,10.0
+student_1158@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,9,17,yes,10.0
+student_1159@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,9,16,no,5.0
+student_1160@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,9,18,no,3.0
+student_1161@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,9,16,no,8.0
+student_1162@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,10.0
+student_1163@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,16,no,5.0
+student_1164@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,9,17,yes,5.0
+student_1165@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,no,3.0
+student_1166@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,9,16,yes,5.0
+student_1167@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,18,yes,8.0
+student_1168@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,17,no,8.0
+student_1169@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,9,16,yes,5.0
+student_1170@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,16,yes,3.0
+student_1171@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,17,no,8.0
+student_1172@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,17,no,3.0
+student_1173@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,no,3.0
+student_1174@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,16,no,10.0
+student_1175@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,18,no,5.0
+student_1176@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,yes,3.0
+student_1177@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,no,5.0
+student_1178@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,9,16,no,5.0
+student_1179@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,9,17,yes,5.0
+student_1180@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,no,5.0
+student_1181@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,no,10.0
+student_1182@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,no,5.0
+student_1183@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,17,no,5.0
+student_1184@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,17,yes,8.0
+student_1185@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,no,3.0
+student_1186@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,9,16,no,3.0
+student_1187@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,9,17,yes,8.0
+student_1188@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,yes,10.0
+student_1189@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,no,3.0
+student_1190@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,16,no,5.0
+student_1191@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,8,17,no,3.0
+student_1192@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,17,no,5.0
+student_1193@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,5.0
+student_1194@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,17,no,5.0
+student_1195@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,18,no,3.0
+student_1196@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,9,16,no,5.0
+student_1197@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,no,5.0
+student_1198@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,17,no,5.0
+student_1199@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,17,no,5.0
+student_1200@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,yes,5.0
+student_1201@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,no,5.0
+student_1202@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,9,17,no,8.0
+student_1203@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,16,yes,5.0
+student_1204@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,16,no,3.0
+student_1205@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,9,17,no,5.0
+student_1206@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,9,17,no,3.0
+student_1207@vsb.ac.in,Main Entrance & Bus Arch,Central Library & Audi,9,17,no,3.0
+student_1208@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,no,5.0
+student_1209@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,17,yes,8.0
+student_1210@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,no,3.0
+student_1211@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,9,16,no,3.0
+student_1212@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,17,no,10.0
+student_1213@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,9,17,no,5.0
+student_1214@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,17,no,5.0
+student_1215@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,17,yes,5.0
+student_1216@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,18,no,5.0
+student_1217@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,17,yes,5.0
+student_1218@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,no,10.0
+student_1219@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,18,no,5.0
+student_1220@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,17,no,5.0
+student_1221@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,17,no,10.0
+student_1222@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,17,no,5.0
+student_1223@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,16,yes,8.0
+student_1224@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,17,no,8.0
+student_1225@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,9,17,yes,3.0
+student_1226@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,17,no,3.0
+student_1227@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,no,5.0
+student_1228@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,9,16,no,5.0
+student_1229@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,no,10.0
+student_1230@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,18,yes,5.0
+student_1231@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,18,no,8.0
+student_1232@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,18,no,3.0
+student_1233@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,16,no,3.0
+student_1234@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,17,no,5.0
+student_1235@vsb.ac.in,Hostel Complex & Depo,Mechanical & EEE Block,8,16,no,5.0
+student_1236@vsb.ac.in,Hostel Complex & Depo,Admin & CSE/IT Block,8,16,yes,5.0
+student_1237@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,9,16,no,5.0
+student_1238@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,9,16,yes,5.0
+student_1239@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,yes,3.0
+student_1240@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,17,no,8.0
+student_1241@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,16,no,3.0
+student_1242@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,9,16,no,8.0
+student_1243@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,17,yes,5.0
+student_1244@vsb.ac.in,Hostel Complex & Depo,Central Library & Audi,8,16,no,10.0
+student_1245@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,yes,5.0
+student_1246@vsb.ac.in,Hostel Complex & Depo,Cafeteria & Food Court,8,17,yes,5.0
+student_1247@vsb.ac.in,Main Entrance & Bus Arch,Admin & CSE/IT Block,8,17,no,5.0
+student_1248@vsb.ac.in,Main Entrance & Bus Arch,Mechanical & EEE Block,8,16,no,8.0
+student_1249@vsb.ac.in,Main Entrance & Bus Arch,Cafeteria & Food Court,8,18,yes,3.0

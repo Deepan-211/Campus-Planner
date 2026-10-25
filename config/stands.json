@@ -1,0 +1,72 @@
+[
+  {
+    "id": "ST-01",
+    "name": "Unit 1 Residence Halls",
+    "zone": "Residential",
+    "latitude": 37.8675,
+    "longitude": -122.2555,
+    "dock_capacity": 25,
+    "origin_weight": 0.30,
+    "destination_weight": 0.05
+  },
+  {
+    "id": "ST-02",
+    "name": "Unit 2 Residence Halls",
+    "zone": "Residential",
+    "latitude": 37.8658,
+    "longitude": -122.2552,
+    "dock_capacity": 25,
+    "origin_weight": 0.30,
+    "destination_weight": 0.05
+  },
+  {
+    "id": "ST-03",
+    "name": "Foothill / Stern Halls",
+    "zone": "Residential",
+    "latitude": 37.8748,
+    "longitude": -122.2541,
+    "dock_capacity": 20,
+    "origin_weight": 0.20,
+    "destination_weight": 0.05
+  },
+  {
+    "id": "ST-04",
+    "name": "Soda & Cory Halls (EECS)",
+    "zone": "Academic",
+    "latitude": 37.8756,
+    "longitude": -122.2588,
+    "dock_capacity": 25,
+    "origin_weight": 0.05,
+    "destination_weight": 0.25
+  },
+  {
+    "id": "ST-05",
+    "name": "Dwinelle & Wheeler Halls",
+    "zone": "Academic",
+    "latitude": 37.8706,
+    "longitude": -122.2605,
+    "dock_capacity": 30,
+    "origin_weight": 0.05,
+    "destination_weight": 0.30
+  },
+  {
+    "id": "ST-06",
+    "name": "Moffitt & Doe Libraries",
+    "zone": "Hub",
+    "latitude": 37.8724,
+    "longitude": -122.2608,
+    "dock_capacity": 25,
+    "origin_weight": 0.05,
+    "destination_weight": 0.20
+  },
+  {
+    "id": "ST-07",
+    "name": "Haas School of Business",
+    "zone": "Academic",
+    "latitude": 37.8715,
+    "longitude": -122.2533,
+    "dock_capacity": 20,
+    "origin_weight": 0.05,
+    "destination_weight": 0.10
+  }
+]
