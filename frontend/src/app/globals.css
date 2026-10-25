@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --background: #ececee;
+  --foreground: #18181b;
+  --card: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+}
+
+body {
+  background-color: #ececee;
+  color: #18181b;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Classic Font Classes */
+.font-classic {
+  font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.04em;
+}
+
+.font-editorial {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Custom Leaflet Map styling: REALISTIC map (NO inversion or grayscale filter) */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #000000 !important;
+  border-radius: 1.5rem;
+}
+
+.leaflet-tile {
+  /* Natural, realistic satellite imagery */
+  filter: saturate(1.1) contrast(1.05);
+}
+
+.custom-stand-marker,
+.custom-stand-marker-container {
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
+}
+
+/* Custom scrollbars for glassmorphic containers */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.4);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Black & White Glassmorphism utility classes */
+.glass-cockpit {
+  background: rgba(12, 12, 16, 0.68);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 30px 80px -20px rgba(0, 0, 0, 0.95),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.glass-card {
+  background: rgba(20, 20, 26, 0.52);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 
+    0 10px 30px -10px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(26, 26, 34, 0.68);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+.glass-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* Spotlight lighting background effects */
+.spotlight-beam {
+  background: radial-gradient(
+    circle at 50% -10%,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.03) 35%,
+    transparent 70%
+  );
+}
+
+.floor-reflection {
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    transparent 75%
+  );
+}
