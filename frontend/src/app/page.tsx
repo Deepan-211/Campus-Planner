@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import CampusMap from "../components/CampusMap";
 import StandTelemetryGrid from "../components/StandTelemetryGrid";
 import TimelineSlider from "../components/TimelineSlider";
@@ -27,6 +27,7 @@ import {
   ConfigSummary,
   TransitRoute,
   UserProfile,
+  TelemetryFrame,
 } from "../lib/types";
 import {
   fetchCampusList,
@@ -41,6 +42,8 @@ import {
   fetchTransitRoutes,
   fetchCurrentUser,
   logoutUser,
+  getTelemetryWsUrl,
+  controlTelemetry,
 } from "../lib/api";
 import {
   Search,
@@ -112,11 +115,80 @@ export default function DashboardPage() {
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
 
+  // Real-time WebSocket Telemetry State
+  const [telemetryFrame, setTelemetryFrame] = useState<TelemetryFrame | null>(null);
+  const [wsConnected, setWsConnected] = useState<boolean>(false);
+  const wsRef = useRef<WebSocket | null>(null);
+
   const getInitials = (name?: string) => {
     if (!name) return "CR";
     const parts = name.trim().split(" ");
     if (parts.length >= 2) return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
     return name.slice(0, 2).toUpperCase();
+  };
+
+  // Connect to Real-Time WebSocket Telemetry
+  useEffect(() => {
+    let isSubscribed = true;
+    let socket: WebSocket | null = null;
+    let reconnectTimer: any = null;
+
+    const connectWs = () => {
+      try {
+        const wsUrl = getTelemetryWsUrl(selectedCampusId);
+        socket = new WebSocket(wsUrl);
+        wsRef.current = socket;
+
+        socket.onopen = () => {
+          if (isSubscribed) setWsConnected(true);
+        };
+
+        socket.onmessage = (event) => {
+          if (!isSubscribed) return;
+          try {
+            const frame: TelemetryFrame = JSON.parse(event.data);
+            setTelemetryFrame(frame);
+          } catch (err) {
+            console.warn("Failed to parse telemetry frame:", err);
+          }
+        };
+
+        socket.onclose = () => {
+          if (isSubscribed) {
+            setWsConnected(false);
+            reconnectTimer = setTimeout(connectWs, 3000);
+          }
+        };
+
+        socket.onerror = () => {
+          socket?.close();
+        };
+      } catch (e) {
+        console.warn("WebSocket connection error:", e);
+      }
+    };
+
+    connectWs();
+
+    return () => {
+      isSubscribed = false;
+      if (reconnectTimer) clearTimeout(reconnectTimer);
+      if (socket) socket.close();
+    };
+  }, [selectedCampusId]);
+
+  const handleTelemetryControl = (action: "pause" | "speed", value?: any) => {
+    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+      if (action === "pause") {
+        wsRef.current.send(JSON.stringify({ action: "set_pause", paused: value }));
+      } else if (action === "speed") {
+        wsRef.current.send(JSON.stringify({ action: "set_speed", speed: value }));
+      }
+    } else {
+      controlTelemetry(selectedCampusId, action === "speed" ? value : undefined, action === "pause" ? value : undefined)
+        .then(setTelemetryFrame)
+        .catch(console.warn);
+    }
   };
 
   // Load campus list and authenticate user on mount
@@ -455,14 +527,16 @@ export default function DashboardPage() {
                 onMapStyleChange={setMapStyle}
                 selectedStandId={selectedStandId}
                 onStandClick={(stand) => setSelectedStandId(stand.id)}
+                telemetryFrame={telemetryFrame}
+                onTelemetryControl={handleTelemetryControl}
               />
 
               {/* OVERLAY 1: Top-Left "Live" Pill Badge Matching Mockup */}
               <div className="absolute top-4 left-4 z-[1000] bg-zinc-900/80 backdrop-blur-md px-3.5 py-1.5 rounded-full flex items-center gap-2 text-white text-xs font-semibold shadow-lg border border-white/10">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-                <span>Live</span>
+                <span>{wsConnected ? "Live Telemetry" : "Live"}</span>
                 <span className="text-zinc-400 font-normal">
-                  {String(selectedHour).padStart(2, "0")}:00 Telemetry
+                  {telemetryFrame ? telemetryFrame.sim_time : `${String(selectedHour).padStart(2, "0")}:00 Telemetry`}
                 </span>
               </div>
 
@@ -801,6 +875,7 @@ export default function DashboardPage() {
             rebalancing={rebalancing}
             transitRoutes={transitRoutes}
             onSelectStand={(standId) => setSelectedStandId(standId)}
+            liveEvents={telemetryFrame?.recent_events}
           />
 
           {/* SECTION 2: Stand Status & Urgent Alerts Inspector */}
