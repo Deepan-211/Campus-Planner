@@ -119,3 +119,29 @@ def login(
         token_type="bearer",
         user=UserOut.model_validate(user),
     )
+
+from fastapi.security import OAuth2PasswordRequestForm
+
+@auth_router.post(
+    "/token",
+    summary="OAuth2 Password Form token endpoint for Swagger UI"
+)
+def swagger_login(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    db: Session = Depends(get_db)
+):
+    """Support standard OAuth2 form login for OpenAPI interactive docs."""
+    seed_default_users(db)
+    user = db.query(UserModel).filter(UserModel.email == form_data.username.lower().strip()).first()
+    if not user or not verify_password(form_data.password, user.hashed_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password.",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    token = create_access_token(data={"sub": user.email, "role": user.role, "name": user.full_name})
+    return {
+        "access_token": token,
+        "token_type": "bearer",
+    }
