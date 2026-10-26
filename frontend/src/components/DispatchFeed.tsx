@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Stand, TransitRoute, RebalancingResponse } from "../lib/types";
+import { Stand, TransitRoute, RebalancingResponse, TelemetryEvent } from "../lib/types";
 import {
   Radio,
   Truck,
@@ -32,6 +32,7 @@ interface DispatchFeedProps {
   rebalancing: RebalancingResponse | null;
   transitRoutes: TransitRoute[];
   onSelectStand?: (standId: string) => void;
+  liveEvents?: TelemetryEvent[];
 }
 
 export default function DispatchFeed({
@@ -41,11 +42,36 @@ export default function DispatchFeed({
   rebalancing,
   transitRoutes,
   onSelectStand,
+  liveEvents,
 }: DispatchFeedProps) {
   const [filter, setFilter] = useState<"all" | "van" | "alerts">("all");
 
   // Construct dynamic events based on live hourly state and rebalancing routes
   const events: DispatchEvent[] = [];
+
+  // Prepend live real-time WebSocket events if available
+  if (liveEvents && liveEvents.length > 0) {
+    liveEvents.forEach((evt) => {
+      const isPick = evt.type.includes("PICKUP");
+      const isDrop = evt.type.includes("DROPOFF");
+      const isRental = evt.type === "RENTAL";
+      events.push({
+        id: evt.id,
+        time: evt.time,
+        type: isPick || isDrop ? "van" : "system",
+        title: isPick
+          ? "Van Rebalance Pickup"
+          : isDrop
+          ? "Van Rebalance Drop-off"
+          : isRental
+          ? "Student Bike Checkout"
+          : "Student Bike Return",
+        detail: evt.message,
+        standId: evt.stand_id,
+        severity: isPick || isDrop ? "warning" : "success",
+      });
+    });
+  }
 
   const timePrefix = String(selectedHour).padStart(2, "0");
 
