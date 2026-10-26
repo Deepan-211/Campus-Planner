@@ -255,3 +255,54 @@ export interface AuthResponse {
   token_type: string;
   user: UserProfile;
 }
+
+export interface TelemetryVan {
+  id: string;
+  name: string;
+  status: "EN_ROUTE" | "AT_STOP" | string;
+  latitude: number;
+  longitude: number;
+  bearing: number;
+  speed_kmh: number;
+  load: number;
+  capacity: number;
+  target_stand_id: string;
+  target_stand_name: string;
+  current_action: string;
+  eta_seconds: number;
+  dwell_remaining_sec: number;
+}
+
+export interface TelemetryStand {
+  id: string;
+  name: string;
+  zone: string;
+  bikes: number;
+  docks_free: number;
+  capacity: number;
+  fill_pct: number;
+  status: "BALANCED" | "STARVED" | "SURPLUS" | string;
+}
+
+export interface TelemetryEvent {
+  id: string;
+  type: "RENTAL" | "RETURN" | "REBALANCE_PICKUP" | "REBALANCE_DROPOFF" | string;
+  stand_id: string;
+  stand_name: string;
+  time: string;
+  message: string;
+  bikes_available_after: number;
+}
+
+export interface TelemetryFrame {
+  timestamp: string;
+  campus_id: string;
+  sim_time: string;
+  sim_second: number;
+  is_paused: boolean;
+  speed_multiplier: number;
+  van: TelemetryVan;
+  stands: TelemetryStand[];
+  live_inventory: Record<string, number>;
+  recent_events: TelemetryEvent[];
+}

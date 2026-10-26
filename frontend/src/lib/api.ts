@@ -14,6 +14,7 @@ import {
   TransitRoute,
   UserProfile,
   AuthResponse,
+  TelemetryFrame,
 } from "./types";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
@@ -234,4 +235,48 @@ export async function fetchCurrentUser(): Promise<UserProfile | null> {
 
 export function logoutUser(): void {
   setStoredToken(null);
+}
+
+export function getTelemetryWsUrl(campusId: string = "vsb_karur"): string {
+  const defaultWsHost = "localhost:8000";
+  let host = defaultWsHost;
+  let proto = "ws:";
+
+  if (typeof window !== "undefined") {
+    proto = window.location.protocol === "https:" ? "wss:" : "ws:";
+    if (process.env.NEXT_PUBLIC_API_URL) {
+      try {
+        const parsed = new URL(process.env.NEXT_PUBLIC_API_URL);
+        host = parsed.host;
+        proto = parsed.protocol === "https:" ? "wss:" : "ws:";
+      } catch {
+        host = defaultWsHost;
+      }
+    }
+  }
+
+  return `${proto}//${host}/api/v1/telemetry/ws?campus_id=${campusId}`;
+}
+
+export async function fetchTelemetrySnapshot(campusId: string = "vsb_karur"): Promise<TelemetryFrame> {
+  const res = await fetch(`${API_BASE}/telemetry/snapshot?campus_id=${campusId}`);
+  if (!res.ok) throw new Error("Failed to fetch telemetry snapshot");
+  return res.json();
+}
+
+export async function controlTelemetry(
+  campusId: string = "vsb_karur",
+  speed?: number,
+  paused?: boolean
+): Promise<TelemetryFrame> {
+  const params = new URLSearchParams();
+  params.set("campus_id", campusId);
+  if (speed !== undefined) params.set("speed", speed.toString());
+  if (paused !== undefined) params.set("paused", paused.toString());
+
+  const res = await fetch(`${API_BASE}/telemetry/control?${params.toString()}`, {
+    method: "POST",
+  });
+  if (!res.ok) throw new Error("Failed to send telemetry control command");
+  return res.json();
 }
