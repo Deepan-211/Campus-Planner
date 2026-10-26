@@ -12,7 +12,7 @@ import {
   useMap,
   useMapEvents,
 } from "react-leaflet";
-import { Stand, RouteStep, TransitRoute } from "../lib/types";
+import { Stand, RouteStep, TransitRoute, TelemetryFrame, TelemetryVan } from "../lib/types";
 import {
   Navigation,
   MapPin,
@@ -22,6 +22,11 @@ import {
   Focus,
   Maximize2,
   ZoomIn,
+  Truck,
+  Play,
+  Pause,
+  Radio,
+  Zap,
 } from "lucide-react";
 
 export interface CampusMapProps {
@@ -46,6 +51,8 @@ export interface CampusMapProps {
   mapStyle?: "satellite" | "streets";
   onMapStyleChange?: (style: "satellite" | "streets") => void;
   selectedStandId?: string | null;
+  telemetryFrame?: TelemetryFrame | null;
+  onTelemetryControl?: (action: "pause" | "speed", value?: any) => void;
 }
 
 /**
@@ -290,6 +297,8 @@ export default function CampusMapLeaflet({
   mapStyle: controlledMapStyle,
   onMapStyleChange,
   selectedStandId,
+  telemetryFrame,
+  onTelemetryControl,
 }: CampusMapProps) {
   const [internalMapStyle, setInternalMapStyle] = useState<"satellite" | "streets">(
     controlledMapStyle || "satellite"
@@ -434,6 +443,94 @@ export default function CampusMapLeaflet({
     });
   };
 
+  // Animated moving van icon with compass bearing heading and status badge
+  const createVanIcon = (van: TelemetryVan) => {
+    const isAtStop = van.status === "AT_STOP";
+    const badgeColor = isAtStop ? "#10b981" : "#0284c7";
+    const etaText = isAtStop
+      ? `AT DOCK • ${Math.round(van.dwell_remaining_sec)}s`
+      : `ETA ${Math.round(van.eta_seconds)}s ➔ ${van.target_stand_name.slice(0, 14)}`;
+
+    const html = `
+      <div style="
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        pointer-events: auto;
+      ">
+        <!-- Floating Van Status Pill -->
+        <div style="
+          margin-bottom: 5px;
+          background: rgba(9, 13, 22, 0.95);
+          border: 1px solid rgba(56, 189, 248, 0.7);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.9), 0 0 12px rgba(56, 189, 248, 0.45);
+          border-radius: 9999px;
+          padding: 2px 8px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          white-space: nowrap;
+          backdrop-filter: blur(8px);
+        ">
+          <span style="
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: ${badgeColor};
+            box-shadow: 0 0 6px ${badgeColor};
+          "></span>
+          <span style="font-size: 10px; font-weight: 800; color: #ffffff; letter-spacing: 0.02em;">
+            VAN #1 (${van.load}/${van.capacity})
+          </span>
+          <span style="font-size: 9px; font-weight: 600; color: #94a3b8;">
+            • ${etaText}
+          </span>
+        </div>
+
+        <!-- Van Beacon Radar Body -->
+        <div style="position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;">
+          <div style="
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.25);
+            border: 1.5px solid #38bdf8;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.8);
+          "></div>
+          <div style="
+            position: relative;
+            z-index: 2;
+            width: 32px;
+            height: 32px;
+            background: #090d16;
+            border: 2px solid #38bdf8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transform: rotate(${van.bearing}deg);
+            transition: transform 0.6s ease;
+          ">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 19 21 12 17 5 21 12 2"></polygon>
+            </svg>
+          </div>
+        </div>
+      </div>
+    `;
+
+    return L.divIcon({
+      html,
+      className: "custom-van-marker-container",
+      iconSize: [200, 80],
+      iconAnchor: [100, 52],
+    });
+  };
+
   // Straight line fallback positions if routeGeometry is not supplied
   const fallbackRoutePositions: [number, number][] = [];
   if (showRebalancingRoute && routeSteps && routeSteps.length > 0) {
@@ -557,6 +654,7 @@ export default function CampusMapLeaflet({
         {/* Stand Markers */}
         {stands.map((stand) => {
           const bikes =
+            telemetryFrame?.live_inventory?.[stand.id] ??
             hourlyInventories[stand.id]?.[selectedHour] ??
             Math.round(stand.dock_capacity * 0.5);
           const icon = createStandIcon(stand, bikes);
@@ -614,6 +712,56 @@ export default function CampusMapLeaflet({
           );
         })}
 
+        {/* Animated Moving Rebalancing Van Marker */}
+        {telemetryFrame?.van && (
+          <Marker
+            position={[telemetryFrame.van.latitude, telemetryFrame.van.longitude]}
+            icon={createVanIcon(telemetryFrame.van)}
+          >
+            <Popup className="custom-popup">
+              <div className="p-3 bg-zinc-950 text-white rounded-xl border border-sky-400/40 min-w-[240px] shadow-2xl font-sans">
+                <div className="flex items-center justify-between border-b border-white/10 pb-2 mb-2">
+                  <div className="flex items-center gap-1.5 font-bold text-sky-400 text-xs">
+                    <span>🚐</span>
+                    <span>{telemetryFrame.van.name}</span>
+                  </div>
+                  <span
+                    className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${
+                      telemetryFrame.van.status === "AT_STOP"
+                        ? "bg-emerald-950 text-emerald-400 border border-emerald-500/40"
+                        : "bg-sky-950 text-sky-400 border border-sky-500/40"
+                    }`}
+                  >
+                    {telemetryFrame.van.status}
+                  </span>
+                </div>
+                <div className="space-y-1.5 text-xs text-zinc-300 font-mono">
+                  <div className="flex justify-between">
+                    <span className="text-zinc-400">Action:</span>
+                    <span className="font-semibold text-white">{telemetryFrame.van.current_action}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-zinc-400">Target Stop:</span>
+                    <span className="text-white font-semibold">{telemetryFrame.van.target_stand_name}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-zinc-400">ETA to Stop:</span>
+                    <span className="text-emerald-400 font-bold">{Math.round(telemetryFrame.van.eta_seconds)}s</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-zinc-400">Van Load:</span>
+                    <span className="text-sky-300 font-bold">{telemetryFrame.van.load} / {telemetryFrame.van.capacity} bikes</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-zinc-400">Cruising Speed:</span>
+                    <span>{telemetryFrame.van.speed_kmh} km/h</span>
+                  </div>
+                </div>
+              </div>
+            </Popup>
+          </Marker>
+        )}
+
         {/* Dynamic Zoom & Navigation HUD */}
         <MapZoomHUD
           stands={stands}
@@ -639,6 +787,71 @@ export default function CampusMapLeaflet({
               ({stands.length} stands)
             </span>
           </div>
+
+          {/* Real-time Streaming Telemetry Control HUD in Top Center */}
+          {telemetryFrame && (
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] glass-cockpit px-3.5 py-1.5 rounded-full flex items-center gap-2.5 shadow-2xl border border-sky-400/30">
+              <div className="flex items-center gap-1.5">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span className="text-[10px] font-bold text-emerald-400 tracking-wider uppercase font-mono">
+                  Live Stream
+                </span>
+              </div>
+
+              <span className="text-zinc-600">•</span>
+
+              <span className="text-xs font-mono font-bold text-white flex items-center gap-1">
+                <span>🕒</span>
+                <span>{telemetryFrame.sim_time}</span>
+              </span>
+
+              <span className="text-zinc-600 hidden sm:inline">•</span>
+
+              <div className="hidden md:flex items-center gap-1.5 text-[11px] font-mono text-zinc-300">
+                <span className="text-sky-400 font-semibold">🚐 Van #1:</span>
+                <span className="text-white truncate max-w-[130px]">
+                  {telemetryFrame.van.status === "AT_STOP"
+                    ? "At Dock"
+                    : `ETA ${Math.round(telemetryFrame.van.eta_seconds)}s`}
+                </span>
+              </div>
+
+              <span className="text-zinc-600">•</span>
+
+              {/* Play/Pause & Speed Selector */}
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => onTelemetryControl?.("pause", !telemetryFrame.is_paused)}
+                  className="p-1 rounded-md hover:bg-white/10 text-zinc-300 hover:text-white transition"
+                  title={telemetryFrame.is_paused ? "Resume Simulation" : "Pause Simulation"}
+                >
+                  {telemetryFrame.is_paused ? (
+                    <Play className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400" />
+                  ) : (
+                    <Pause className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                  )}
+                </button>
+                {[1, 2, 5].map((spd) => (
+                  <button
+                    key={spd}
+                    type="button"
+                    onClick={() => onTelemetryControl?.("speed", spd)}
+                    className={`px-1.5 py-0.5 rounded text-[9px] font-mono font-bold transition ${
+                      telemetryFrame.speed_multiplier === spd
+                        ? "bg-sky-500 text-black shadow-sm"
+                        : "text-zinc-400 hover:text-white"
+                    }`}
+                  >
+                    {spd}x
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Style Toggle Pill in top right */}
           <div className="absolute top-4 right-4 z-[1000] glass-cockpit p-1 rounded-full flex items-center gap-1 shadow-2xl">
