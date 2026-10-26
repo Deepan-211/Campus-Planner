@@ -12,6 +12,8 @@ import {
   TripOptionsResponse,
   CampusLiveAvailabilityResponse,
   TransitRoute,
+  UserProfile,
+  AuthResponse,
 } from "./types";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api/v1";
@@ -171,4 +173,65 @@ export async function fetchTransitRoutes(campusId?: string): Promise<TransitRout
   const res = await fetch(url);
   if (!res.ok) throw new Error("Failed to fetch transit routes");
   return res.json();
+}
+
+export async function loginUser(email: string, password: string): Promise<AuthResponse> {
+  const res = await fetch(`${AUTH_BASE}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.detail || "Invalid email or password.");
+  }
+  const data: AuthResponse = await res.json();
+  setStoredToken(data.access_token);
+  return data;
+}
+
+export async function registerUser(
+  email: string,
+  password: string,
+  fullName: string,
+  role: string = "operator"
+): Promise<AuthResponse> {
+  const res = await fetch(`${AUTH_BASE}/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password, full_name: fullName, role }),
+  });
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.detail || "Registration failed. Please check your details.");
+  }
+  const data: AuthResponse = await res.json();
+  setStoredToken(data.access_token);
+  return data;
+}
+
+export async function fetchCurrentUser(): Promise<UserProfile | null> {
+  const token = getStoredToken();
+  if (!token) return null;
+
+  try {
+    const res = await fetch(`${AUTH_BASE}/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!res.ok) {
+      if (res.status === 401) {
+        setStoredToken(null);
+      }
+      return null;
+    }
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
+export function logoutUser(): void {
+  setStoredToken(null);
 }
