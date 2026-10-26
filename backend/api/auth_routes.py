@@ -1,12 +1,28 @@
 """
 FastAPI routing endpoints for authentication, registration, and user profiles.
 """
-from fastapi import APIRouter
+from typing import Optional
+from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
+
+from backend.db.session import get_db
 from backend.db.models import UserModel
-from backend.auth.security import get_password_hash
+from backend.auth.schemas import (
+    UserRegisterRequest,
+    UserLoginRequest,
+    UserOut,
+    AuthTokenResponse,
+)
+from backend.auth.security import (
+    get_password_hash,
+    verify_password,
+    create_access_token,
+)
+from backend.auth.deps import require_current_user
 
 auth_router = APIRouter(prefix="/api/auth", tags=["Authentication"])
+
 
 def seed_default_users(db: Session):
     """Seed initial demo accounts if database has no users."""
@@ -38,10 +54,6 @@ def seed_default_users(db: Session):
         db.add_all(demo_users)
         db.commit()
 
-from fastapi import Depends, HTTPException, status
-from backend.db.session import get_db
-from backend.auth.schemas import UserRegisterRequest, UserOut, AuthTokenResponse
-from backend.auth.security import create_access_token
 
 @auth_router.post(
     "/register",
@@ -84,8 +96,6 @@ def register(
         user=UserOut.model_validate(user),
     )
 
-from backend.auth.schemas import UserLoginRequest
-from backend.auth.security import verify_password
 
 @auth_router.post(
     "/login",
@@ -97,6 +107,7 @@ def login(
     db: Session = Depends(get_db)
 ):
     """Authenticate with email and password and return a JWT access token."""
+    # Ensure default accounts are present if fresh DB
     seed_default_users(db)
 
     user = db.query(UserModel).filter(UserModel.email == req.email.lower().strip()).first()
@@ -120,7 +131,6 @@ def login(
         user=UserOut.model_validate(user),
     )
 
-from fastapi.security import OAuth2PasswordRequestForm
 
 @auth_router.post(
     "/token",
@@ -145,3 +155,15 @@ def swagger_login(
         "access_token": token,
         "token_type": "bearer",
     }
+
+
+@auth_router.get(
+    "/me",
+    response_model=UserOut,
+    summary="Get current user profile"
+)
+def get_me(
+    current_user: UserModel = Depends(require_current_user)
+):
+    """Return the currently authenticated user's profile."""
+    return UserOut.model_validate(current_user)
