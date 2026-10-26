@@ -83,3 +83,39 @@ def register(
         token_type="bearer",
         user=UserOut.model_validate(user),
     )
+
+from backend.auth.schemas import UserLoginRequest
+from backend.auth.security import verify_password
+
+@auth_router.post(
+    "/login",
+    response_model=AuthTokenResponse,
+    summary="Login with email and password"
+)
+def login(
+    req: UserLoginRequest,
+    db: Session = Depends(get_db)
+):
+    """Authenticate with email and password and return a JWT access token."""
+    seed_default_users(db)
+
+    user = db.query(UserModel).filter(UserModel.email == req.email.lower().strip()).first()
+    if not user or not verify_password(req.password, user.hashed_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password.",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    if not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="This account has been deactivated.",
+        )
+
+    token = create_access_token(data={"sub": user.email, "role": user.role, "name": user.full_name})
+    return AuthTokenResponse(
+        access_token=token,
+        token_type="bearer",
+        user=UserOut.model_validate(user),
+    )
