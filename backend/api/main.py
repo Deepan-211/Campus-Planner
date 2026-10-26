@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.api.routes import router
 from backend.api.auth_routes import auth_router, seed_default_users
+from backend.api.telemetry_routes import telemetry_router
 from backend.db.session import init_db, SessionLocal
 
 @asynccontextmanager
@@ -33,6 +34,7 @@ app.add_middleware(
 )
 
 app.include_router(auth_router)
+app.include_router(telemetry_router)
 app.include_router(router)
 
 
