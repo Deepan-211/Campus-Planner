@@ -240,3 +240,18 @@ export interface TransitRoute {
   currency: string;
   stops: TransitStop[];
 }
+
+export interface UserProfile {
+  id: number;
+  email: string;
+  full_name: string;
+  role: "admin" | "operator" | "student" | string;
+  is_active: boolean;
+  created_at: string;
+}
+
+export interface AuthResponse {
+  access_token: string;
+  token_type: string;
+  user: UserProfile;
+}
