@@ -14,6 +14,7 @@ import ExplainerCard from "../components/ExplainerCard";
 import RiderView from "../components/RiderView";
 import DispatchFeed from "../components/DispatchFeed";
 import StandAlertsInspector from "../components/StandAlertsInspector";
+import AuthModal from "../components/AuthModal";
 import {
   CampusInfo,
   Stand,
@@ -25,6 +26,7 @@ import {
   DataSourceInfo,
   ConfigSummary,
   TransitRoute,
+  UserProfile,
 } from "../lib/types";
 import {
   fetchCampusList,
@@ -37,6 +39,8 @@ import {
   planRebalancing,
   runEvaluation,
   fetchTransitRoutes,
+  fetchCurrentUser,
+  logoutUser,
 } from "../lib/api";
 import {
   Search,
@@ -68,6 +72,9 @@ import {
   PhoneOff,
   Layers,
   BarChart3,
+  LogIn,
+  LogOut,
+  ShieldCheck,
 } from "lucide-react";
 
 export default function DashboardPage() {
@@ -101,11 +108,28 @@ export default function DashboardPage() {
   // Selected stand focus for map and urgency inspector
   const [selectedStandId, setSelectedStandId] = useState<string | null>(null);
 
-  // Load campus list on mount
+  // Authentication & session state
+  const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+
+  const getInitials = (name?: string) => {
+    if (!name) return "CR";
+    const parts = name.trim().split(" ");
+    if (parts.length >= 2) return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
+    return name.slice(0, 2).toUpperCase();
+  };
+
+  // Load campus list and authenticate user on mount
   useEffect(() => {
     fetchCampusList()
       .then((list) => setCampuses(list))
       .catch((err) => console.warn("Could not fetch campus list:", err));
+
+    fetchCurrentUser()
+      .then((user) => {
+        if (user) setCurrentUser(user);
+      })
+      .catch((err) => console.warn("Could not fetch current user:", err));
   }, []);
 
   // Load campus data whenever selected campus changes
@@ -312,14 +336,11 @@ export default function DashboardPage() {
           {/* Bottom Profile Avatar */}
           <div className="flex flex-col items-center">
             <button
-              onClick={() => {
-                const nextCampus = selectedCampusId === "vsb_karur" ? "berkeley" : "vsb_karur";
-                setSelectedCampusId(nextCampus);
-              }}
-              title={`Switch campus (Active: ${currentCampus?.name})`}
+              onClick={() => setIsAuthModalOpen(true)}
+              title={currentUser ? `Logged in as ${currentUser.full_name} (${currentUser.role})` : "Sign In / Register"}
               className="w-10 h-10 rounded-full bg-zinc-800 border-2 border-zinc-400 flex items-center justify-center text-white text-xs font-bold shadow-md cursor-pointer hover:ring-2 hover:ring-zinc-600 transition"
             >
-              AL
+              {currentUser ? getInitials(currentUser.full_name) : <LogIn className="w-4 h-4 text-zinc-300" />}
             </button>
           </div>
         </aside>
@@ -327,21 +348,58 @@ export default function DashboardPage() {
         {/* MAIN WORKSPACE (CENTER COLUMN) */}
         <main className="flex-1 bg-white p-5 sm:p-7 flex flex-col justify-between overflow-y-auto">
           <div>
-            {/* Top Header Row Matching Mockup: "Hello, Alex" */}
+            {/* Top Header Row with Real Authentication */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 gap-3 border-b border-zinc-100">
               <div>
-                <h1 className="text-2xl sm:text-[26px] font-bold text-zinc-800 tracking-tight">
-                  Hello, Alex
-                </h1>
+                <div className="flex items-center gap-2.5">
+                  <h1 className="text-2xl sm:text-[26px] font-bold text-zinc-800 tracking-tight">
+                    {currentUser ? `Hello, ${currentUser.full_name}` : "CampusRide Operations"}
+                  </h1>
+                  {currentUser && (
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wide uppercase bg-zinc-900 text-white shadow-sm flex items-center gap-1">
+                      <ShieldCheck className="w-3 h-3 text-emerald-400" />
+                      <span>{currentUser.role}</span>
+                    </span>
+                  )}
+                </div>
                 <p className="text-xs text-zinc-500 font-medium mt-0.5 flex items-center gap-2">
-                  <span>Campus collaboration meeting</span>
+                  <span>{currentUser ? currentUser.email : "Campus collaboration meeting"}</span>
                   <span>•</span>
                   <span className="text-zinc-700 font-semibold">{currentCampus?.name || "V.S.B. Karur"}</span>
                 </p>
               </div>
 
-              {/* Campus Selector & Provenance Badges */}
-              <div className="flex items-center gap-2">
+              {/* Campus Selector, Provenance Badges, and Auth Trigger */}
+              <div className="flex flex-wrap items-center gap-2">
+                {currentUser ? (
+                  <div className="flex items-center gap-1.5 bg-zinc-100 border border-zinc-200 py-1 px-2.5 rounded-full">
+                    <div className="w-5 h-5 rounded-full bg-zinc-900 text-white text-[10px] font-bold flex items-center justify-center">
+                      {getInitials(currentUser.full_name)}
+                    </div>
+                    <span className="text-xs font-medium text-zinc-800 max-w-[120px] truncate hidden sm:inline">
+                      {currentUser.full_name}
+                    </span>
+                    <button
+                      onClick={() => {
+                        logoutUser();
+                        setCurrentUser(null);
+                      }}
+                      title="Sign Out"
+                      className="ml-1 text-zinc-400 hover:text-rose-600 p-0.5 transition"
+                    >
+                      <LogOut className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => setIsAuthModalOpen(true)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-white text-xs font-semibold shadow-sm transition"
+                  >
+                    <LogIn className="w-3.5 h-3.5" />
+                    <span>Sign In</span>
+                  </button>
+                )}
+
                 <select
                   value={selectedCampusId}
                   onChange={(e) => setSelectedCampusId(e.target.value)}
@@ -857,6 +915,13 @@ export default function DashboardPage() {
           </div>
         </div>
       )}
+
+      {/* Authentication Modal */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onSuccess={(user) => setCurrentUser(user)}
+      />
     </div>
   );
 }
