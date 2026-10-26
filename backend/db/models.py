@@ -69,3 +69,15 @@ class SurveyResponseModel(Base):
     evening_commute_hour = Column(Integer, nullable=False)
     cycle_in_rain = Column(Boolean, default=False, nullable=False)
     acceptable_walk_minutes = Column(Float, default=5.0, nullable=False)
+
+class UserModel(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    email = Column(String(128), unique=True, index=True, nullable=False)
+    full_name = Column(String(128), nullable=False)
+    hashed_password = Column(String(256), nullable=False)
+    role = Column(String(32), default="operator", nullable=False)  # admin, operator, student
+    is_active = Column(Boolean, default=True, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
