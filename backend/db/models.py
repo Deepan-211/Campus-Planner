@@ -1,7 +1,8 @@
 """
 SQLAlchemy ORM models for CampusRide Planner.
 """
-from sqlalchemy import Column, Integer, Float, String, Boolean, ForeignKey, Index
+from datetime import datetime
+from sqlalchemy import Column, Integer, Float, String, Boolean, ForeignKey, Index, DateTime
 from sqlalchemy.orm import relationship
 from backend.db.session import Base
 
